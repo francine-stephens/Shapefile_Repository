@@ -5,7 +5,6 @@
 # LAST UPDATED: 3/4/21
 #-------------------------------------------------------------------------------
 
-
 #SET-UP-------------------------------------------------------------------------
 ## LIBRARIES
 packages <- c(
@@ -19,9 +18,8 @@ packages <- c(
 lapply(packages, library, character.only = T)
 
 ## PATHS
-setwd("~/Projects/public_space/census/crosswalks")
+setwd("~/Shapefile_Repository")
 wd <- getwd()
-shp_repo <- "C:/Users/Franc/Documents/Shapefile_Repository"
 shp2010_path <- "/2010USA_CensusGeog_Shp"   # CHANGE
 cbsa_path <- "/tl_2010_us_cbsa10/"          # CHANGE
 metdiv_path <- "/tl_2010_us_metdiv10/"      # CHANGE
@@ -30,29 +28,29 @@ places_path <- "/tl2010_us_place_2010/"     # CHANGE
 
 
 ## LOAD SHAPEFILES
-cbg <- st_read(paste0(shp_repo,
-                           shp2010_path,
-                           cbg10_path,
-                           "US_blck_grp_2010.shp"),
-                    quiet = F)
+cbg <- st_read(paste0(wd, 
+                      shp2010_path,
+                      cbg10_path,
+                      "US_blck_grp_2010.shp"), 
+               quiet = F)
 
-place <- st_read(paste0(shp_repo,
+place <- st_read(paste0(wd,
                         shp2010_path,
                         places10_path,
-                        "US_place_2010.shp"),
-                quiet = F)
+                        "US_place_2010.shp"), 
+                 quiet = F)
 
-cbsa <- st_read(paste0(shp_repo, 
+cbsa <- st_read(paste0(wd, 
                        shp2010_path, 
                        cbsa_path, 
                        "tl_2010_us_cbsa10.shp"), 
                 quiet = F)
 
-metdiv <- st_read(paste0(shp_repo,
+metdiv <- st_read(paste0(wd,
                            shp2010_path, 
                            metdiv_path, 
-                           "tl_2010_us_metdiv10.shp"),
-                    quiet = F)
+                           "tl_2010_us_metdiv10.shp"), 
+                  quiet = F)
 
 #SELECT KEY GEOGRAPHIC IDENTIFIERS, RENAME & SET PROJECTION---------------------
 cbg <- cbg %>%
