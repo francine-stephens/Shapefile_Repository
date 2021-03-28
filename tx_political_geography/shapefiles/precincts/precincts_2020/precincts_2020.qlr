@@ -1,0 +1,326 @@
+<!DOCTYPE qgis-layer-definition>
+<qlr>
+  <layer-tree-group name="" checked="Qt::Checked" expanded="1">
+    <customproperties/>
+    <layer-tree-layer name="precincts_2020_update" patch_size="-1,-1" id="precincts_2020_update_203a11e8_8545_4cd3_8080_acc2726ed7f4" source="./precincts_2020_update.shp|layername=precincts_2020_update" providerKey="ogr" checked="Qt::Checked" legend_exp="" expanded="1" legend_split_behavior="0">
+      <customproperties/>
+    </layer-tree-layer>
+  </layer-tree-group>
+  <maplayers>
+    <maplayer type="vector" simplifyMaxScale="1" autoRefreshTime="0" maxScale="0" simplifyDrawingHints="1" readOnly="0" simplifyDrawingTol="1" hasScaleBasedVisibilityFlag="0" minScale="100000000" styleCategories="AllStyleCategories" labelsEnabled="0" simplifyAlgorithm="0" autoRefreshEnabled="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyLocal="1" geometry="Polygon" wkbType="MultiPolygon">
+      <extent>
+        <xmin>-106.64564599959911106</xmin>
+        <ymin>25.83716399967783772</ymin>
+        <xmax>-93.50803899971775479</xmax>
+        <ymax>36.50070399999195558</ymax>
+      </extent>
+      <id>precincts_2020_update_203a11e8_8545_4cd3_8080_acc2726ed7f4</id>
+      <datasource>./precincts_2020_update.shp|layername=precincts_2020_update</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>precincts_2020_update</layername>
+      <srs>
+        <spatialrefsys>
+          <wkt>GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]]</wkt>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type>dataset</type>
+        <title></title>
+        <abstract></abstract>
+        <links/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <wkt></wkt>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent/>
+      </resourceMetadata>
+      <provider encoding="UTF-8">ogr</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <dataDependencies/>
+      <legend type="default-vector"/>
+      <expressionfields/>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <auxiliaryLayer/>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+      </flags>
+      <temporal endField="" startExpression="" mode="0" accumulate="0" enabled="0" durationUnit="min" fixedDuration="0" durationField="" startField="" endExpression="">
+        <fixedRange>
+          <start></start>
+          <end></end>
+        </fixedRange>
+      </temporal>
+      <renderer-v2 type="singleSymbol" symbollevels="0" forceraster="0" enableorderby="0">
+        <symbols>
+          <symbol force_rhr="0" name="0" type="fill" alpha="1" clip_to_extent="1">
+            <layer enabled="1" pass="0" class="SimpleFill" locked="0">
+              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="color" v="213,180,60,255"/>
+              <prop k="joinstyle" v="bevel"/>
+              <prop k="offset" v="0,0"/>
+              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"/>
+              <prop k="offset_unit" v="MM"/>
+              <prop k="outline_color" v="35,35,35,255"/>
+              <prop k="outline_style" v="solid"/>
+              <prop k="outline_width" v="0.26"/>
+              <prop k="outline_width_unit" v="MM"/>
+              <prop k="style" v="solid"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" value="" type="QString"/>
+                  <Option name="properties"/>
+                  <Option name="type" value="collection" type="QString"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale/>
+      </renderer-v2>
+      <customproperties/>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerOpacity>1</layerOpacity>
+      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
+        <activeChecks type="StringList">
+          <Option value="" type="QString"/>
+        </activeChecks>
+        <checkConfiguration/>
+      </geometryOptions>
+      <referencedLayers/>
+      <referencingLayers/>
+      <fieldConfiguration>
+        <field name="PREC">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="Area">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="Perimeter">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="Shape_Leng">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="Shape_Area">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="unique_id">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="Compactnes">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="SHAPE_STAr">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="SHAPE_STLe">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="Shape__Are">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="Shape__Len">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="CNTY">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="Shape_len">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="dnc_id">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="c_name">
+          <editWidget type="">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias name="" field="PREC" index="0"/>
+        <alias name="" field="Area" index="1"/>
+        <alias name="" field="Perimeter" index="2"/>
+        <alias name="" field="Shape_Leng" index="3"/>
+        <alias name="" field="Shape_Area" index="4"/>
+        <alias name="" field="unique_id" index="5"/>
+        <alias name="" field="Compactnes" index="6"/>
+        <alias name="" field="SHAPE_STAr" index="7"/>
+        <alias name="" field="SHAPE_STLe" index="8"/>
+        <alias name="" field="Shape__Are" index="9"/>
+        <alias name="" field="Shape__Len" index="10"/>
+        <alias name="" field="CNTY" index="11"/>
+        <alias name="" field="Shape_len" index="12"/>
+        <alias name="" field="dnc_id" index="13"/>
+        <alias name="" field="c_name" index="14"/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <defaults>
+        <default field="PREC" applyOnUpdate="0" expression=""/>
+        <default field="Area" applyOnUpdate="0" expression=""/>
+        <default field="Perimeter" applyOnUpdate="0" expression=""/>
+        <default field="Shape_Leng" applyOnUpdate="0" expression=""/>
+        <default field="Shape_Area" applyOnUpdate="0" expression=""/>
+        <default field="unique_id" applyOnUpdate="0" expression=""/>
+        <default field="Compactnes" applyOnUpdate="0" expression=""/>
+        <default field="SHAPE_STAr" applyOnUpdate="0" expression=""/>
+        <default field="SHAPE_STLe" applyOnUpdate="0" expression=""/>
+        <default field="Shape__Are" applyOnUpdate="0" expression=""/>
+        <default field="Shape__Len" applyOnUpdate="0" expression=""/>
+        <default field="CNTY" applyOnUpdate="0" expression=""/>
+        <default field="Shape_len" applyOnUpdate="0" expression=""/>
+        <default field="dnc_id" applyOnUpdate="0" expression=""/>
+        <default field="c_name" applyOnUpdate="0" expression=""/>
+      </defaults>
+      <constraints>
+        <constraint exp_strength="0" field="PREC" notnull_strength="0" constraints="0" unique_strength="0"/>
+        <constraint exp_strength="0" field="Area" notnull_strength="0" constraints="0" unique_strength="0"/>
+        <constraint exp_strength="0" field="Perimeter" notnull_strength="0" constraints="0" unique_strength="0"/>
+        <constraint exp_strength="0" field="Shape_Leng" notnull_strength="0" constraints="0" unique_strength="0"/>
+        <constraint exp_strength="0" field="Shape_Area" notnull_strength="0" constraints="0" unique_strength="0"/>
+        <constraint exp_strength="0" field="unique_id" notnull_strength="0" constraints="0" unique_strength="0"/>
+        <constraint exp_strength="0" field="Compactnes" notnull_strength="0" constraints="0" unique_strength="0"/>
+        <constraint exp_strength="0" field="SHAPE_STAr" notnull_strength="0" constraints="0" unique_strength="0"/>
+        <constraint exp_strength="0" field="SHAPE_STLe" notnull_strength="0" constraints="0" unique_strength="0"/>
+        <constraint exp_strength="0" field="Shape__Are" notnull_strength="0" constraints="0" unique_strength="0"/>
+        <constraint exp_strength="0" field="Shape__Len" notnull_strength="0" constraints="0" unique_strength="0"/>
+        <constraint exp_strength="0" field="CNTY" notnull_strength="0" constraints="0" unique_strength="0"/>
+        <constraint exp_strength="0" field="Shape_len" notnull_strength="0" constraints="0" unique_strength="0"/>
+        <constraint exp_strength="0" field="dnc_id" notnull_strength="0" constraints="0" unique_strength="0"/>
+        <constraint exp_strength="0" field="c_name" notnull_strength="0" constraints="0" unique_strength="0"/>
+      </constraints>
+      <constraintExpressions>
+        <constraint desc="" field="PREC" exp=""/>
+        <constraint desc="" field="Area" exp=""/>
+        <constraint desc="" field="Perimeter" exp=""/>
+        <constraint desc="" field="Shape_Leng" exp=""/>
+        <constraint desc="" field="Shape_Area" exp=""/>
+        <constraint desc="" field="unique_id" exp=""/>
+        <constraint desc="" field="Compactnes" exp=""/>
+        <constraint desc="" field="SHAPE_STAr" exp=""/>
+        <constraint desc="" field="SHAPE_STLe" exp=""/>
+        <constraint desc="" field="Shape__Are" exp=""/>
+        <constraint desc="" field="Shape__Len" exp=""/>
+        <constraint desc="" field="CNTY" exp=""/>
+        <constraint desc="" field="Shape_len" exp=""/>
+        <constraint desc="" field="dnc_id" exp=""/>
+        <constraint desc="" field="c_name" exp=""/>
+      </constraintExpressions>
+      <expressionfields/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
+        <columns/>
+      </attributetableconfig>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <storedexpressions/>
+      <editform tolerant="1"></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable/>
+      <labelOnTop/>
+      <dataDefinedFieldProperties/>
+      <widgets/>
+      <previewExpression></previewExpression>
+      <mapTip></mapTip>
+    </maplayer>
+  </maplayers>
+</qlr>
