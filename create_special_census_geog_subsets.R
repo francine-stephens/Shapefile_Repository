@@ -4,7 +4,7 @@
 # GEOGRAPHIES CREATED: Top 100 metros, Top 100 places
 # AUTHOR: Francine Stephens
 # DATE CREATED: 2/9/21
-# LAST UPDATED: 3/4/21
+# LAST UPDATED: 4/11/21
 #-------------------------------------------------------------------------------
 
 ## LIBRARIES
@@ -15,16 +15,56 @@ packages <- c(
   "ggplot2",
   "tigris",
   "censusapi", 
-  "tidycensus" 
+  "tidycensus", 
+  "leaflet"
 )
 lapply(packages, library, character.only = T)
 
 ## PATHS
 wd <- getwd()
+sf_shapes <- "/san_francisco_shapes/analysis_nhoods_2010_census_tracts/"
+student_path <- "C:/Users/Franc/Documents/Stanford/SOC176/"
 
 # APIs
 census_api_key("99ccb52a629609683f17f804ca875115e3f0804c",  overwrite = T)
 Sys.setenv(CENSUS_KEY="99ccb52a629609683f17f804ca875115e3f0804c")
+
+
+## DATA
+sf_hoods <- st_read(paste0(wd, 
+                           sf_shapes,
+                          "geo_export_afde1190-a893-43d3-9611-1325253cf07f.shp"),
+                    quiet = F)
+
+
+
+# SOCIAL LIFE OF NEIGHBORHOOD CENSUS TRACTS------------------------------------- 
+
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = excelsior,
+              fillColor = NULL,
+              color = "Black",
+              opacity = 0.5,
+              fillOpacity = 0.5,
+              weight = 1.5,
+              #label = ~paste0(geoid)
+  )
+
+census_tracts <- c("06075026100", 
+                   "06075026301",
+                   "06075026004",
+                   "06075026001",
+                   "06075025500")
+excelsior <- sf_hoods %>%
+  filter(geoid %in% census_tracts) %>%
+  mutate(nhood = "Excelsior") %>%
+  group_by(nhood) %>%
+  summarize(tracts = n())
+
+st_write(excelsior, "excelsior_sf.shp")
+
+
 
 
 #Decennial Census Data----------------------------------------------------------

@@ -1,4 +1,5 @@
 .Rhistory
+.zip
 2010USA_CensusGeog_Shp/
 EVI_2020_by_cbg10.csv
 Point_Coordinate_Files/
@@ -12,3 +13,4 @@ nhgis0015_shape/
 tidycensus.R
 top100_metro_pop.jpeg
 tx_geog/
+soc176_shapes/
