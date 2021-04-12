@@ -131,6 +131,51 @@ anthony_collegepark_chino <- full_class_nhoods %>%
   filter(student == "Anthony")
 st_write(anthony_collegepark_chino, "nhood_college_park_chino.shp")
 
+nicole_duveneck_paloalto <- full_class_nhoods %>%
+  filter(student == "Nicole")
+st_write(nicole_duveneck_paloalto, "nhood_duveneck_palo_alto.shp")
+
+lauren_ravenswood_epa <- full_class_nhoods %>%
+  filter(student == "Lauren")
+st_write(lauren_ravenswood_epa, "nhood_ravenswood_epa.shp")
+
+olivia_city_center_epa <- full_class_nhoods %>%
+  filter(student == "Olivia")
+st_write(olivia_city_center_epa, "nhood_city_center_epa.shp")
+
+grace_haight_ashbury_sf <- full_class_nhoods %>%
+  filter(student == "Grace")
+st_write(grace_haight_ashbury_sf, "nhood_haight_ashbury_sf.shp")
+
+ricky_mission_sf <- full_class_nhoods %>%
+  filter(student == "Ricky")
+st_write(ricky_mission_sf, "nhood_mission_sf_ricky.shp")
+
+niki_little_sai_gon_westminster <- full_class_nhoods %>%
+  filter(student == "Niki")
+st_write(niki_little_sai_gon_westminster, "nhood_little_sai_gon_westminster.shp")
+
+claudia_blue_hills_kc <- full_class_nhoods %>%
+  filter(student == "Claudia")
+st_write(claudia_blue_hills_kc, "nhood_blue_hills_kc.shp")
+
+josh_chinatown_oakland <- full_class_nhoods %>%
+  filter(student == "Josh")
+st_write(josh_chinatown_oakland, "nhood_chinatown_oakland.shp")
+
+betsayada_boyle_heights_la <- full_class_nhoods %>%
+  filter(student == "Betsayada")
+st_write(betsayada_boyle_heights_la, "nhood_boyle_heights_la.shp")
+
+sahir_niles_fremont <- full_class_nhoods %>%
+  filter(student == "Sahir")
+st_write(sahir_niles_fremont, "nhood_niles_fremont.shp")
+
+anushree_overfelt_sanjose <- full_class_nhoods %>%
+  filter(student == "Anushree")
+st_write(anushree_overfelt_sanjose, "nhood_anushree_overfelt_san_jose.shp")
+
+
 
 
 ## MY HOOD
