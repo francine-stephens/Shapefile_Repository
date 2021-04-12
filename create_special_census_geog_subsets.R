@@ -23,6 +23,7 @@ lapply(packages, library, character.only = T)
 ## PATHS
 wd <- getwd()
 sf_shapes <- "/san_francisco_shapes/analysis_nhoods_2010_census_tracts/"
+tracts_path <- "/2010USA_CensusGeog_Shp/nhgis0005_shapefile_tl2010_us_tract_2010/"
 student_path <- "C:/Users/Franc/Documents/Stanford/SOC176/"
 
 # APIs
@@ -36,21 +37,103 @@ sf_hoods <- st_read(paste0(wd,
                           "geo_export_afde1190-a893-43d3-9611-1325253cf07f.shp"),
                     quiet = F)
 
+student_hoods <- read_csv(paste0(student_path,
+                                 "student_neighborhoods_list.csv")
+                          )
 
+census_tracts <- st_read(paste0(wd, 
+                                tracts_path,
+                                "US_tract_2010.shp"),
+                         quiet = F)
 
-# SOCIAL LIFE OF NEIGHBORHOOD CENSUS TRACTS------------------------------------- 
+state_codes <- c(state.abb, "DC")
+
+us_tracts <- map_df(state_codes, ~tracts(state = .x, cb = TRUE))
 
 leaflet() %>%
   addTiles() %>%
-  addPolygons(data = excelsior,
+  addPolygons(data = us_tracts %>%
+  filter(GEOID == "53077000100") %>%
+  st_transform(., crs = 4326) 
+  )
+
+# SOCIAL LIFE OF NEIGHBORHOOD CENSUS TRACTS------------------------------------- 
+
+student_nhoods <- student_hoods %>% 
+  mutate(GEOID = str_pad(CTID, width = 11, side = "left", pad = "0")) %>%
+  select(-crime, -CTID) %>%
+  rename(student = "student_name",
+         nhood = "neighborhood_name",
+         city = "city_name",
+         state = "state_abbrev")
+
+full_class_tracts <- us_tracts %>%
+  right_join(., student_nhoods, by = "GEOID")
+
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = full_class_tracts %>% st_transform(., crs = 4326),
               fillColor = NULL,
               color = "Black",
               opacity = 0.5,
               fillOpacity = 0.5,
               weight = 1.5,
-              #label = ~paste0(geoid)
+              label = ~paste0(neighborhood)
   )
 
+full_class_nhoods <- full_class_tracts %>% 
+  group_by(student, nhood, city, state) %>%
+  summarize(GEOIDS = toString(GEOID)) %>% 
+  st_transform(., crs = 4326)
+
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = full_class_nhoods,
+              fillColor = NULL,
+              color = "Black",
+              opacity = 0.5,
+              fillOpacity = 0.5,
+              weight = 1.5,
+              label = ~paste0(nhood)
+  )
+  
+
+## EXPORT NHOOD BY STUDENT
+andrew_downtown_sanmateo <- full_class_nhoods %>%
+  filter(student == "Andrew")
+st_write(andrew_downtown_sanmateo, "nhood_downtown_sanmateo.shp")
+
+whitney_oakknoll_oakland <- full_class_nhoods %>%
+  filter(student == "Whitney")
+st_write(whitney_oakknoll_oakland, "nhood_oak_knoll_oakland.shp")
+
+kyle_hazelwood_pitt <- full_class_nhoods %>%
+  filter(student == "Kyle")
+st_write(kyle_hazelwood_pitt, "nhood_hazelwood_pitt.shp")
+
+jordan_mission_sf <- full_class_nhoods %>%
+  filter(student == "Jordan")
+st_write(jordan_mission_sf, "nhood_mission_sf_jordan.shp")
+
+jessica_downtown_yakima <- full_class_nhoods %>%
+  filter(student == "Jessica")
+st_write(jessica_downtown_yakima, "nhood_downtown_yakima.shp")
+
+pamela_corkdown_detroit <- full_class_nhoods %>%
+  filter(student == "Pamela")
+st_write(pamela_corkdown_detroit, "nhood_corktown_detroit.shp")
+
+nashira_montbello_denver <- full_class_nhoods %>%
+  filter(student == "Nashira")
+st_write(nashira_montbello_denver, "nhood_montbello_denver.shp")
+
+anthony_collegepark_chino <- full_class_nhoods %>%
+  filter(student == "Anthony")
+st_write(anthony_collegepark_chino, "nhood_college_park_chino.shp")
+
+
+
+## MY HOOD
 census_tracts <- c("06075026100", 
                    "06075026301",
                    "06075026004",
