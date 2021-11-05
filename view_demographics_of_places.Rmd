@@ -1,0 +1,256 @@
+---
+title: "View Demographics of Places, 2020"
+author: "Francine Stephens"
+date: "Last Updated: `r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+    theme: flatly
+    highlight: espresso
+---
+
+```{r setup, include=F, warning=F, message=F}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+## Libraries
+packages <- c(
+  "readr",
+  "tidyverse",
+  "ggplot2",
+  "reactable",
+  "htmltools"
+)
+lapply(packages, library, character.only = T)
+
+## Data Imports
+wd <- getwd()
+
+places_data <- read_csv(paste0(wd, "/top50_places_2020Census.csv"))
+
+```
+
+# Population Change in the Largest 50 Places
+
+Table 1 shows the following: 
+
+**Places with Population Losses:**
+
+1. Detroit: -75K, -10.5%
+2. Baltimore: -35K, -5.7%
+3. Memphis, TN: -18K, -2.8%
+4. Milwaukee: -18K, -3%
+
+**5 Places with the Smallest Rate of Growth:**
+
+1. Long Beach, CA: 1%, 4K
+2. Chicago: 1.9%, 50K
+3. Los Angeles: 2.8%, 106K
+4. Tucson: 3%, 16K
+5. Albuquerque: 3.6%, 19K
+
+**5 Places with the Fastest Rate of Growth:** 
+
+1. Fort Worth: 23.4%, 174K
+2. Seattle: 21.1%, 128K
+3. Austin: 19.8%, 159K
+4. Denver: 19.3%, 115K
+5. Charlotte, NC: 18.8%, 139K
+
+
+```{r pop table}
+places_popsize <- places_data %>%
+  select(rank, Name_st, TPOP, TPOP_CHG10YR, TPOP_PCHG10YR) %>%
+  mutate(across(where(is.numeric), ~round(.x, digits = 1)))
+
+# Population size table and ranking
+tpop_tab <- reactable(places_popsize,
+          columns = list(
+    rank = colDef(name = "Rank", width = 75),
+    Name_st = colDef(name = "Name", width = 250),
+    TPOP = colDef(name = "Population", format = colFormat(separators = TRUE), width = 150),
+    TPOP_CHG10YR = colDef(name = "Change from 2010", format = colFormat(separators = TRUE), width = 150),
+    TPOP_PCHG10YR = colDef(name = "% Change",
+                           format = colFormat(percent = FALSE, suffix = "%", digits = 1), width = 100)
+          ),
+    sortable = TRUE, showSortable = TRUE,
+    filterable = TRUE, searchable = TRUE,
+    defaultPageSize = 50, highlight = TRUE
+    )
+    
+
+
+withtitle_totpop <- 
+  htmlwidgets::prependContent(tpop_tab, 
+    h2(class = "title", "Table 1: Population Counts & Change in 2020"))
+
+withtitle_totpop
+
+    
+```
+
+# Racial Demographics in Top 50 Places
+
+The key takeaways from Table 2, shown below, are: 
+
+**5 Cities with the Greatest Share of White Residents:**
+
+1. Portland - 66%
+2. Colorado Springs - 65%
+3. Louisville-Jefferson, KY - 65%
+4. Omaha, NE - 62%
+5. Mesa, AZ - 60%
+
+**5 Places with the Greatest Share of Black Residents:**
+
+1. Detroit - 77%
+2. Memphis, TN - 61%
+3. Baltimore - 57%
+4. Atlanta - 47%
+5. DC - 41%
+
+**5 Places with the Greatest Share of Asian Residents:**
+
+1. San Jose - 38%
+2. San Francisco - 34%
+3. Sacramento - 20%
+4. San Diego - 18%
+5. Seattle - 17%
+
+
+**5 Places with the Greatest Share of Latinx Residents:**
+
+1. El Paso - 81%
+2. Miami - 70%
+3. San Antonio - 64%
+4. Bakersfield - 53%
+5. Fresno - 51%
+
+
+```{r race comp}
+
+places_racecomp <- places_data %>%
+  select(rank, Name_st, WHITE_NH:HISPANIC) %>%
+  mutate(across(where(is.numeric), ~round(.x, digits = 1))) %>%
+  relocate(rank, Name_st, WHITE_NH, BLACK_NH, ASIAN, HISPANIC)
+
+
+# Population size table and ranking
+racecomp_tab <- reactable(places_racecomp,
+          columns = list(
+    rank = colDef(name = "Rank", width = 75),
+    Name_st = colDef(name = "Name", width = 250),
+    WHITE_NH = colDef(name = "White", format = colFormat(percent = FALSE, suffix = "%", digits = 1)),
+    BLACK_NH = colDef(name = "Black", format = colFormat(percent = FALSE, suffix = "%", digits = 1)),
+    ASIAN = colDef(name = "Asian", format = colFormat(percent = FALSE, suffix = "%", digits = 1)),
+    HISPANIC = colDef(name = "Latinx", format = colFormat(percent = FALSE, suffix = "%", digits = 1)),
+    AMIND = colDef(name = "Native American", format = colFormat(percent = FALSE, suffix = "%", digits = 1)), 
+    PACIFIC = colDef(name = "Pacific Islander", format = colFormat(percent = FALSE, suffix = "%", digits = 1)),
+    OTHER = colDef(name = "Other Race", format = colFormat(percent = FALSE, suffix = "%", digits = 1)),
+    MULTI = colDef(name = "Multiracial", format = colFormat(percent = FALSE, suffix = "%", digits = 1))
+    ),
+    sortable = TRUE, showSortable = TRUE,
+    filterable = TRUE, searchable = TRUE,
+    defaultPageSize = 50, highlight = TRUE
+)
+
+
+withtitle_racecomp <- 
+  htmlwidgets::prependContent(racecomp_tab, 
+    h2(class = "title", "Table 2: Racial Composition in 2020"))
+
+withtitle_racecomp
+
+``` 
+    
+    
+Based on Table 3, shown below, the key takeaways about racial composition change over the last 10 years are:
+    
+**Which places had the largest declines in white population?** 
+
+1. Memphis: -16.4%
+2. Arlington: -16%
+3. Milwaukee: -15%
+4. San Jose: -13%
+5. Fresno: -13%
+
+**Which places had the largest growth in white population?**
+    
+1. Miami: 29.8%   
+2. DC: 25%
+3. Denver: 24%
+4. Atlanta: 23%
+5. Oakland: 19%
+
+**Which places had the largest decline in Black population?**
+
+1. Miami: -19%
+2. Detroit: -16%
+3. Baltimore: -15%
+4. Oakland: -14%
+5. Chicago: -8%
+
+**Which places had the largest growth in Black population?**
+
+1. Mesa, AZ: 40%
+2. Phoenix: 36%
+3. Louisville/Jefferson County: 32%
+4. Arlington, TX: 32%
+5. Fort Worth: 29%
+
+*None of the top 50 cities saw declines in Asian residents.*
+
+**Which places had the largest growth in Asian population?**
+
+1. Indianapolis: 120%
+2. Omaha: 84%
+3. Columbus, OH: 76%
+4. Fort Worth: 73%
+5. Louisville/Jefferson County: 71%
+
+*Only two places had declines in the Latinx population - Los Angeles and San Jose - but the magnitude was small - 0.5%.*
+
+**Which places had the greatest growth in Latinx population?**
+
+1. Louisville/Jefferson County: 103%
+2. Baltimore: 77%
+3. Jacksonville, FL: 73%
+4. Nashville-Davidson: 59%
+5. Columbus, OH: 58%
+    
+```{r race comp change table}    
+
+places_racecompchg <- places_data %>%
+  select(rank, Name_st, WHITE_NH_PCHG10YR:HISPANIC_PCHG10YR) %>%
+  mutate(across(where(is.numeric), ~round(.x, digits = 1))) %>%
+  relocate(rank, Name_st, WHITE_NH_PCHG10YR, BLACK_NH_PCHG10YR, ASIAN_PCHG10YR, HISPANIC_PCHG10YR)
+
+racecompchg_tab <- reactable(places_racecompchg,
+          columns = list(
+    rank = colDef(name = "Rank", width = 75),
+    Name_st = colDef(name = "Name", width = 250),
+    WHITE_NH_PCHG10YR = colDef(name = "White", format = colFormat(percent = FALSE, suffix = "%", digits = 1)),
+    BLACK_NH_PCHG10YR = colDef(name = "Black", format = colFormat(percent = FALSE, suffix = "%", digits = 1)),
+    ASIAN_PCHG10YR = colDef(name = "Asian", format = colFormat(percent = FALSE, suffix = "%", digits = 1)),
+    HISPANIC_PCHG10YR = colDef(name = "Latinx", format = colFormat(percent = FALSE, suffix = "%", digits = 1)),
+    AMIND_PCHG10YR = colDef(name = "Native American", format = colFormat(percent = FALSE, suffix = "%", digits = 1)),
+    PACIFIC_PCHG10YR = colDef(name = "Pacific", format = colFormat(percent = FALSE, suffix = "%", digits = 1)),
+    OTHER_PCHG10YR = colDef(name = "Other Race", format = colFormat(percent = FALSE, suffix = "%", digits = 1)),
+    MULTI_PCHG10YR = colDef(name = "Multiracial", format = colFormat(percent = FALSE, suffix = "%", digits = 1))
+    ),
+    sortable = TRUE, showSortable = TRUE,
+    filterable = TRUE, searchable = TRUE,
+    defaultPageSize = 50, highlight = TRUE
+)
+
+
+withtitle <- 
+  htmlwidgets::prependContent(racecompchg_tab, 
+    h2(class = "title", "Table 3: Percent Change in Racial Composition from 2010"))
+
+withtitle
+
+```
+

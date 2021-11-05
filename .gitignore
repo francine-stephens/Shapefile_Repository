@@ -14,3 +14,7 @@ tidycensus.R
 top100_metro_pop.jpeg
 tx_geog/
 soc176_shapes/
+PHL_Parcels/*
+Texas_building_footprints/*
+geofabrik-osm-gis-standard-0.7.pdf
+
