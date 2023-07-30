@@ -19,7 +19,8 @@ packages <- c(
   "tmap",
   "tmaptools",
   "tidycensus",
-  "tigris"
+  "tigris",
+  "geojsonio"
 )
 lapply(packages, library, character.only = TRUE)
 
@@ -28,7 +29,13 @@ wd <- getwd()
 
 ## PARAMETERS
 wgs <- 4326
-hill_country <- c("Comal", "Bexar", "Hays", "Travis", "Blanco", "Kendall")
+hill_country <- c("Comal", 
+                  "Bexar", 
+                  "Hays", 
+                  "Travis", 
+                  "Blanco", 
+                  "Kendall", 
+                  "Gillespie")
 ```
 
 
@@ -36,8 +43,6 @@ hill_country <- c("Comal", "Bexar", "Hays", "Travis", "Blanco", "Kendall")
 
 ```{r}
 counties_sf <- counties(state = "Texas")
-
-head(counties_sf)
 
 ```
 
@@ -53,5 +58,8 @@ aggregate_region_sf <- select_counties %>%
   group_by(STATEFP) %>% 
   summarize(counties = n()) %>% 
   ungroup()
+
+geojson_write(aggregate_region_sf,
+                         file = paste0("tx_geog/", "south_central_tx.GeoJSON"))
 
 ```
