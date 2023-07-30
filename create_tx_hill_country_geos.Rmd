@@ -1,0 +1,57 @@
+---
+title: "Extract Data"
+author: "Francine Stephens"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+packages <- c(
+  "readr",
+  "tidyverse",
+  "tidyr",
+  "sf",
+  "leaflet", 
+  "readxl", 
+  "mapboxapi",
+  "tmap",
+  "tmaptools",
+  "tidycensus",
+  "tigris"
+)
+lapply(packages, library, character.only = TRUE)
+
+## PATHS
+wd <- getwd()
+
+## PARAMETERS
+wgs <- 4326
+hill_country <- c("Comal", "Bexar", "Hays", "Travis", "Blanco", "Kendall")
+```
+
+
+## S/CENTRAL TX COUNTIES
+
+```{r}
+counties_sf <- counties(state = "Texas")
+
+head(counties_sf)
+
+```
+
+```{r}
+select_counties <- counties_sf %>% 
+  filter(NAME %in% hill_country)
+
+head(select_counties)
+```
+
+```{r}
+aggregate_region_sf <- select_counties %>%
+  group_by(STATEFP) %>% 
+  summarize(counties = n()) %>% 
+  ungroup()
+
+```

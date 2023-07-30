@@ -1,5 +1,6 @@
 .Rhistory
 .zip
+schema.ini
 2010USA_CensusGeog_Shp/
 EVI_2020_by_cbg10.csv
 Point_Coordinate_Files/
@@ -17,4 +18,12 @@ soc176_shapes/
 PHL_Parcels/*
 Texas_building_footprints/*
 geofabrik-osm-gis-standard-0.7.pdf
+TxDOT_Roadways.geojson
+.xlsx
+.shp
+.dbf
+.prj
+.shx
+cbd/*
+
 
